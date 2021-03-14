@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace TGS.Challenge
 {
   /*
@@ -19,7 +21,17 @@ namespace TGS.Challenge
     {
       public int Find(int[] numbers)
       {
-        return -99;
-      }
+            var _numbers = numbers.ToList();
+            for (int i = 1; i < _numbers.Count - 2; i++)
+            {
+                var lefNumbers = _numbers.GetRange(0, i);
+                var rightNumbers = _numbers.GetRange(i + 1, _numbers.Count - (i + 1));
+                if (lefNumbers.Sum() == rightNumbers.Sum())
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
     }
 }
