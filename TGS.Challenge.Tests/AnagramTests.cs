@@ -27,17 +27,17 @@ namespace TGS.Challenge.Tests
     [Fact]
     public void Dormitory_IsAnagram_Dirty_room()
     {
-      var result = _anagram.AreAnagrams("Dormitory", "Dirty_room");
+      var result = _anagram.AreAnagrams("Dormitory", "Dirty room");
 
       Assert.True(result);
     }
 
     [Fact]
-    public void Funeral_IsAnagram_Reel_fun()
+    public void Funeral_Is_NOT_Anagram_Reel_fun()
     {
       var result = _anagram.AreAnagrams("Funeral", "Reel fun");
 
-      Assert.True(result);
+      Assert.False(result);
     }
 
     [Fact]
