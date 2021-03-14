@@ -26,7 +26,35 @@ namespace TGS.Challenge
     {
         public string Format(int value)
         {
-            return string.Empty;
+            if (value < 0 || value > 1000000000)
+			{
+                throw new ArgumentOutOfRangeException();
+			}
+
+            if (value < 1000)
+			{
+                return value.ToString();
+			}
+
+            var arr = value.ToString().ToCharArray();
+            string formatted = string.Empty;
+            var lgth = 0;
+
+            for (var n = arr.Length - 1; n >= 0; n--)
+            {
+                if (lgth == 3 || lgth == 6 || lgth == 9)
+                {
+                    formatted = $"{arr[n]},{formatted}";
+                }
+                else
+                {
+                    formatted = $"{arr[n]}{formatted}";
+                }
+
+                lgth++;
+            }
+
+            return formatted;
         }
     }
 }
