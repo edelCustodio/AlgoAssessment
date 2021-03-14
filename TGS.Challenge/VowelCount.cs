@@ -16,7 +16,28 @@ namespace TGS.Challenge
     {
         public int Count(string value)
         {
-            return -1;
+            if (string.IsNullOrEmpty(value))
+			{
+                throw new ArgumentException();
+
+            }
+
+            var vowels = new char[] { 'a', 'e', 'i', 'o', 'u' };
+            var str = value.ToLower().ToCharArray();
+            var count = 0;
+
+            for (var i = 0; i < vowels.Length; i++)
+			{
+                for (var j = 0; j < str.Length; j++)
+				{
+                    if (vowels[i] == str[j])
+					{
+                        count++;
+                    }
+				}
+			}
+
+            return count;
         }
     }
 }
