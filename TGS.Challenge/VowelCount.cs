@@ -19,7 +19,6 @@ namespace TGS.Challenge
             if (string.IsNullOrEmpty(value))
 			{
                 throw new ArgumentException();
-
             }
 
             var vowels = new char[] { 'a', 'e', 'i', 'o', 'u' };
