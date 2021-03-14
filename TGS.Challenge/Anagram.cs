@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
 namespace TGS.Challenge
 {
   /*
@@ -24,7 +28,47 @@ namespace TGS.Challenge
     {
       public bool AreAnagrams(string word1, string word2)
       {
-        return false;
-      }
+            var newWord1 = Regex.Replace(word1, @"\s+", "");
+            newWord1 = newWord1.ToLower();
+            var newWord2 = Regex.Replace(word2, @"\s+", "");
+            newWord2 = newWord2.ToLower();
+
+            if (string.IsNullOrEmpty(word1) || string.IsNullOrEmpty(word2))
+			{
+                throw new ArgumentException();
+            }
+
+            if (newWord1.Length != newWord2.Length)
+            {
+                return false;
+            }
+
+            var subWord1 = new List<char>();
+            subWord1.AddRange(newWord1);
+            var subWord2 = new List<char>();
+            subWord2.AddRange(newWord2);
+            var indexList = new List<int>();
+
+            for (int j = 0; j < subWord1.Count; j++)
+            {
+                var index = subWord2.IndexOf(subWord1[j]);
+                if (index != -1)
+                {
+                    subWord2.RemoveAt(index);
+                    indexList.Add(index);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            if (indexList.Count != subWord1.Count)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
